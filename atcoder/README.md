@@ -47,6 +47,7 @@
 
 <details>
   <summary>twitter</summary>
+  
   - 他の人の解答見たいのに500でerror返すのなんなん
   - pythonだと使用メモリが8000KB台が多い（自分もそうだし、他の提出でも）, Go, Rustは1000 ~ 2000KB台
   
