@@ -52,4 +52,72 @@
   - pythonだと使用メモリが8000KB台が多い（自分もそうだし、他の提出でも）, Go, Rustは1000 ~ 2000KB台
   
 </details>
+
+## 25/09/23
+### ABC085C - Otoshidama
+
+<details>
+  <summary>forではなく、関数で回す</summary>
   
+<details>
+  <summary>諦め</summary>
+    
+  - forで回しているコードを見ると、実行時間が5桁KBなので、関数で回したい
+  - 5000 yenによる支払いが最初は不要と考えた。1000 yen * 5で補えると考えた。しかし、枚数を考えると必須。
+  - 処理の流れを下記
+    
+    総計をY yen, もらったお金の総枚数を N とする
+      1. Y - 10k * i for i in range(N)でループを回す、 i の増加共に N - i 
+      2. まず、1.で Y - 10k * iで0か、N=0確認　: break ? by_10kを実行　←0の確認いるか？確認せずにby_10k, by_5kを回しても問題ないのでは？ 
+      3. 
+  
+  ```python
+  N, Y = 2000, 20000000 #map(int, input().split())
+
+def by_1k(N:int, Y:int, result_list:list[int]) -> list[int]:
+    result_list[2] = int(Y / 1000)
+    return result_list if int(Y / 1000) == N else 0
+
+
+def by_5k(_N:int, _Y:int, _result_list: list[int]) -> list[int]:
+    for i in range(_N+1):
+        Y:int = _Y - 5000*i
+        N:int = _N - i
+        if Y < 0:
+            break
+        # Yが5kの倍数であった場合
+        if N == 0 and Y == 0:
+            _result_list[1] = i 
+            return _result_list
+        elif by_1k(N, Y, _result_list):
+            return i
+        else:
+            continue
+    return 0
+
+
+def by_10k(_N:int, _Y:int) -> list[int]:
+    result: list[int] = [0, 0, 0]
+    for i in range(_N+1):
+        Y:int = _Y - 10000*i
+        N:int = _N - i
+        if Y < 0:
+            break
+        # Yが10kの倍数であった場合
+        if N == 0 and Y == 0:
+            result[0] = i
+            return result
+        elif by_1k(N, Y):
+                result[0] = i
+                result[2] = by_1k(N, Y)
+                return result
+        else:
+            continue
+    return [-1, -1, -1]
+
+print(by_10k(N, Y))
+
+# 10kを優先して引いていく, for文で0 ~ Nまですで回す
+  ```
+</details>  
+</details>
