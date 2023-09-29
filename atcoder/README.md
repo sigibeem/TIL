@@ -1,14 +1,31 @@
 ## 29/09/23 本日より降順とする（最新の日付が先頭）
-- [過去問](https://atcoder.jp/contests/abc321/tasks)を実施、100分ではAは解けたが、Bは不正解、C以降は手を付けられなかった。
-- Bの回答においてbinary search（日本語だと、にぶんき、にほんきとかややこしい）が使われていた。
-  知ってはいたが、どの様に使うかと言う知識が抜けていた or 使えるタイミングを知らないため頭の引き出しがひらかない
-- 今後使えるように流れと使用タイミングを下記する。
-1. 索敵範囲を定義する。　min, max = 0, 100
-2. max, minより中間値を定義。　median = int((max + min) // 2)
-3. 中間値 (median) と目的地 (target_value) との大小を比較
-   大きい場合 median > target_value -> maxを下げる
-   max = median - 1 <- -1
-     
+### A - 321-like Checker
+### B - Cutoff
+
+<details>
+  <summary>binary searchでええやん、2分岐探索って言いづらくない？　</summary>
+
+  - [過去問](https://atcoder.jp/contests/abc321/tasks)を実施、100分ではAは解けたが、Bは不正解、C以降は手を付けられなかった。
+  - Bの回答においてbinary search（日本語だと、にぶんき、にほんきとかややこしい）が使われていた。
+    知ってはいたが、どの様に使うかと言う知識が抜けていた or 使えるタイミングを知らないため頭の引き出しがひらかない
+  - 今後使えるように流れと使用タイミングを下記する。
+  
+  [ 流れ ]
+  1. 索敵範囲を定義する。　min, max = 0, 100
+  2. max, minより中間値を定義。　median = int((max + min) // 2)
+  3. 中間値 (median) と目的地 (target_value) との大小を比較
+     3-1. 大きい場合 median > target_value -> maxを下げる
+      max = median - 1 <- -1するのは最終的にl == rとしてloopを抜けるため
+     3-2. 小さい場合　-> minを上げる
+     min = median + 1
+  4. min >= maxを条件としてloopを回す
+  
+  [ タイミング ]
+  - forを回す際に基本的に使える？
+  - ってきり、forって O(logn)？だから重い処理と...ちゃんと調べて正しい知識をつけようね！
+
+
+</details>     
 
 ## 24/09/23
 ### ABC083B - Some Sums
