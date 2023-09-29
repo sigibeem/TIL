@@ -20,6 +20,7 @@
      3-2. 小さい場合　-> minを上げる
      min = median + 1
   4. min >= maxを条件としてloopを回す
+  ** 3にて-1 or +1しない[報い](https://gyazo.com/9bd3cc612572ad5ee01917fc8b46ec63)を受けよ
   
   [ タイミング ]
   - forを回す際に基本的に使える？
