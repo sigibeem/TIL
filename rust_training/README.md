@@ -11,7 +11,7 @@
 - C, C++ではmalloc, freeを用いて手動メモリ管理
 - Rust, C, C++はGC積んでない、Java, GO, TSで積んでる
 
-- `$cargo new { pj name }` PJ作成、 [bin,lib] create、binの方は実際に処理する内容、libは名前の通りLibrary（importして用いられる）
+- `$cargo new { pj name }` PJ作成、 [bin,lib] crate、binの方は実際に処理する内容、libは名前の通りLibrary（importして用いられる）
 
 <details>
   <summary>文字列リテラルの実体、という言葉について</summary>
@@ -25,6 +25,18 @@
   let s = "apple";
   ```
   ここでの実体は, `apple` である。そして、これはStaticに格納される。
-  実体以外では、 `s` がある。これはStackに格納される。値としては、Static内の `apple`のポインターが格納されている。
+  実体以外では、 `s` がある。これはStackに格納される。値としては、Static内の `apple`のポインタが格納されている。
   
 </details>
+
+- Stackに変数を格納していくときに、変数のサイズが不明確だと整合性が取れない。
+- 64bit, 32bit OSの違いってポインタの横幅、ポインタ自体の表現　（64bit OS: 8bytes) に影響するんや（知らなかった...恥ずかしい、何故恥ずかしいのだ、今しれたから良きなのだ）
+- 変数名を定義する方をいじって、格納する値を変えるの初めてみた
+```rust
+let text: str = "hello";
+let p_text = &text;
+//上下で行っていることは同じ
+let a = 123;
+let ref p_a = a;
+```
+- 文字列スライスとStringでは実データの格納場所が異なる。文字列スライス：　static, String: heap 
