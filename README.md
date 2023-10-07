@@ -3,6 +3,7 @@
 ## Thread-safe?
 <details>
   <summary>Task, Process, Thread</summary>
+  
   - task > process > thread の順でtaskが一番大きい単位、threadが小さい単位である。
   - taskは大きなくくりとしての単位？意味があるくくっているというより、くくることに意味がある？
   - process = problem, プロセスとは一つのプログラムである。
