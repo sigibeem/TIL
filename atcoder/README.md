@@ -1,3 +1,10 @@
+## 8/10/23
+### AtCoder Beginner Contest 322 C - Festival
+
+  - 花火が上がる日（仮に2日とする＝2日目に花火が上がる）に対して、reversed(range(fireflower_day))すると、花火が上がる日までの差分が得られる。
+  - ↑だけだと、常に初日が基準になってしまう。→　花火が上がる日が 2, 3だとする。 reversed(range(2)) -> 1, 0 と出力され、2日目までのoutputが得られる。reversed(range(3))では　-> 2, 1, 0と基準が0日目で始まる。これは異なる。なぜならreversed(range(2))を行ったため、基準日は2日目である。つまり, reversed(range(3 - 2))する必要がある。ここでいう "2" はoutputのlen（）から得られる。
+
+    
 ## 30/09/23
 ### AtCoder Beginner Contest 322に参加
 A, Bは解けたがCはTIL。　D, Eまでは解けるようになることが当面の目標。（F, GからACが3桁, 2桁と下がるため）
